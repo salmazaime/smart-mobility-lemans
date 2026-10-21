@@ -1,53 +1,33 @@
-# Reflections — Smart Mobility Le Mans
+# Reflections: Smart Mobility Le Mans
 
-> Items marked **[YOUR OBSERVATION]** depend on your own live output. Fill them in after the pipeline has run. Everything else is a ready answer; reword it in your own voice.
+## 1. Easy vs. hard sub-questions
+Easy: which routes are late right now, and which stops are busiest on paper (both have data). 
+Hard: where demand is highest, when delays repeat, and any prediction, because there is no ridership data and no history.
 
-## 1. Easy vs. hard sub-questions (before building)
-**Easy:** "which routes are late right now?" (live delay data exists) and "which stops are busiest on paper?" (static schedule exists).
-**Hard:** "where is demand highest?" (no open ridership data, only a proxy), "when do delays recur?" (no GTFS-RT archive, needs weeks of my own collection), and any prediction.
+## 2. Why the static feed doesn't refresh every 15 min
+It only changes when SETRAM publishes a new timetable, every few months. Running every 15 minutes would just re-download the same zip and make useless commits.
 
-## 2. Why the static feed doesn't refresh every 15 minutes
-The static GTFS only changes when SETRAM publishes a new timetable (every few months), so polling every 15 minutes would re-download and re-process an identical 2.4 MB zip thousands of times, produce empty commits, and waste runner time and politeness toward the data provider.
+## 3. Auto-typed ID columns
+If one file reads `stop_id` as numbers and another as text (like `FLEX-381`), the merge fails or silently matches nothing. Stops lose their data and nothing looks broken. Using `dtype=str` fixes it.
 
-## 3. What breaks when ID columns are auto-typed independently
-If pandas reads `stop_id` as integers in one file and as text in another (because one file happens to contain only numeric-looking IDs and the other has values like `FLEX-381`), the merge either raises a dtype error or, worse, silently matches nothing. Stops would lose their coordinates or frequencies, and every downstream number would be wrong without any visible failure. Reading everything with `dtype=str` makes IDs consistent labels, not numbers.
+## 4. Per-route vs. per-stop logging
+Per-stop is about 5,000 x 96 x 84 = 40 million rows (too big for git). Per-route is about 30 x 96 x 84 = 250,000 rows. The downside is that you can't tell which specific stop is the problem, because averaging hides it.
 
-## 4. Per-route vs. per-stop logging over a semester
-Per-stop: ~5,000 rows x 96 snapshots/day x 84 days ≈ **40 million rows** (order of 10^7–10^8; far too heavy for a git-tracked CSV).
-Per-route: ~30 routes x 96 x 84 ≈ **250,000 rows** (order of 10^5).
-The per-route choice makes it harder to answer **"which specific stops or segments suffer repeated delays?"**, e.g. a planner deciding where to build a bus lane or move a stop. Averaging over a route hides a single bottleneck.
+## 5. Better than green-early / red-late
+Use a scale centred on on-time: grey near 0, red for late, blue for early. Being very early is also a problem because people miss the bus. On my dashboard route 34 is about 120 s early and shows up bright green like the best route, but a planner should check its timetable or driver pacing instead.
 
-## 5. Alternative to the green-early / red-late encoding
-Use a **diverging scale centred on on-time**: neutral (grey) near 0 s, red for late, **blue/purple for early**, with a tolerance band (for example −60 s to +180 s counts as on time). A viewer under the original rule sees "very early" as the best route and would ignore it. Under mine, a route running far ahead of schedule stands out as a problem (passengers miss the bus), so the planner would investigate timetable padding or driver pacing on that route rather than treating it as a success.
-
-## 6. Both halves of the scheduling mismatch
-- Static every 15 min: wasteful. The source changes at most every few months, so nearly every run recomputes identical data and clutters the history with empty or no-op commits.
-- Real-time monthly: useless. Delays change minute to minute and the live feed has no history, so one snapshot a month would miss almost every disruption and make "current status" and any recurring-pattern analysis meaningless.
-The cadence must match the **rate of change of the source** and the **decision it supports**.
+## 6. The scheduling mismatch
+Static every 15 min wastes runs because nothing changes. Real-time monthly is useless because delays change by the minute and one snapshot misses almost everything. The schedule should match how fast the data changes.
 
 ## 7. Sanity check of one delayed route
-**[YOUR OBSERVATION]** Route: ____ | Avg delay shown: ____ s | Max: ____ s | Time of day: ____.
-What I compared it with (SETRAM site, rush hour, roadworks, event): ____.
-Did it match? ____. My best guess if not (real disruption / data artifact such as a few extreme stop-times or a trip with stale delay values / off-hours noise): ____.
-*Tip: a low-trip-count route at night with one large delay is usually an artifact of averaging few observations, not a real crisis.*
+The most delayed route was route 5, with an average delay of about 80 s, in the snapshot from 2026-10-21 09:15 UTC (11:15 in Le Mans). That's mid-morning, not rush hour, and the dashboard showed 0 active alerts, so nothing obvious explains it. 80 s is also only a bit over a minute, so it's not a real crisis. My guess is normal small delays or a few stops pulling the average up, not a disruption. (Check the SETRAM site for route 5 to confirm.)
 
-## 8. Where population misleads as a demand proxy
-A commune with few residents but a **major employer, hospital, university, station, shopping area or event site** attracts many trips (Le Mans-area example: the 24 Heures du Mans circuit area in Mulsanne/Arnage on race week, or any commune hosting a large business park). Conversely, a large commune full of **car-owning commuters** or a dormitory suburb can have high population but low transit demand. Population measures where people sleep, not where they travel.
+## 8. Where population misleads
+Population shows where people sleep, not where they travel. A small commune with a hospital, university, station or business park gets lots of trips. A big commuter suburb where everyone drives gets few.
 
-## 9. My supply metric and a commune where it misleads
-**Metric:** scheduled stop-visits per 1,000 residents (sum of weekday scheduled stop-times at stops assigned to the commune, divided by population x 1,000).
-**Commune where it looks wrong:** **[YOUR OBSERVATION: pick from your commune_supply.csv]**.
-Likely candidates to check in your output:
-- **Le Mans** itself: 149k residents but assigning each stop to the *nearest commune centroid* sends many stops on the city's edges to Coulaines, Allonnes, Arnage etc. This inflates those suburbs and deflates Le Mans.
-- Any commune with the **(!) flag** on the dashboard, where one interchange/terminus/depot provides 30%+ of supply: it looks very well served although most residents live far from that stop.
-- Communes with **0 stops** (small rural ones): ranked last, but that may be a genuine gap or just the nearest-centroid rule.
-Explain with what you know about the commune (e.g. its size, whether the stop is a terminus, whether residents are near the line).
+## 9. My supply metric
+Metric: scheduled stop-visits per 1,000 residents.
+It looks wrong for La Chapelle Saint Aubin. It ranks first with 1010 per 1,000, but it only has 2,319 residents and 53 stops. That is probably because stops are assigned to the nearest commune centre (so stops on the edge of le mans end up counted here)..this inflates it. The same rule deflates Le mans, which ranks only 10th (153.8) even though it has the most service (329 stops, 22,900 visits/day) and the main station. Fay, Chaufour-Notre-Dame and Fatines are flagged orange (!) because one stop gives 30%+ of their supply (so their numbers are also not reliable).
 
-## 10. Aggregating stop-level delay events without blowing up the file
-Keep per-stop data only as **running aggregates per (stop, hour-of-day, day-type) bucket** instead of raw rows: for each bucket store count, sum of delay, max delay and number of delays over a threshold (e.g. > 180 s), updating a small `stop_delay_summary.csv` each run. That is ~1,800 stops x 24 hours x 2 day-types ≈ 86,000 rows total, constant size however long it runs. Optionally, log raw stop-level rows **only for events over the threshold**, and roll them up weekly then discard the raw rows.
-
-## 11. Reflection 1 predictions vs. what I found
-**Answerable today:** where scheduled service is concentrated, which routes are currently delayed, whether an alert is active.
-**Needed judgment calls:** choosing population as the demand proxy, choosing the metric (per 1,000 residents), the nearest-centroid commune assignment, the on-time definition and colour encoding, and picking one representative weekday.
-**Needs weeks of history:** recurring delay patterns by hour/day, which routes are chronically late, and any prediction.
-**Compared to my guess:** **[YOUR OBSERVATION: what surprised you, e.g. how noisy the delay data was, or how strongly the metric favoured small suburbs.]**
+## 10. Stop-level delays without a huge file
+Dont store raw rows. Keep running totals per stop, hour and day-type (count, sum, max, number over 180 s)...thats about 86,000 rows, and the file stays the same size forever.
