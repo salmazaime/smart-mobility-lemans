@@ -27,7 +27,7 @@ Population shows where people sleep, not where they travel. A small commune with
 
 ## 9. My supply metric
 Metric: scheduled stop-visits per 1,000 residents.
-It looks wrong for La Chapelle Saint Aubin. It ranks first with 1010 per 1,000, but it only has 2,319 residents and 53 stops. That is probably because stops are assigned to the nearest commune centre (so stops on the edge of le mans end up counted here)..this inflates it. The same rule deflates Le mans, which ranks only 10th (153.8) even though it has the most service (329 stops, 22,900 visits/day) and the main station. Fay, Chaufour-Notre-Dame and Fatines are flagged orange (!) because one stop gives 30%+ of their supply (so their numbers are also not reliable).
+It looks wrong for La Chapelle Saint Aubin. It ranks first with 1010 per 1,000  but it only has 2,319 residents and 53 stops. That is probably because stops are assigned to the nearest commune centre (so stops on the edge of le mans end up counted here) which inflates it. The same rule deflates Le mans, which ranks only 10th (153.8) even though it has the most service (329 stops, 22,900 visits/day) and the main station. Fay, Chaufour-Notre-Dame and Fatines are flagged orange (!) because one stop gives 30%+ of their supply (so their numbers are also not reliable).
 
 ## 10. Stop-level delays without a huge file
 Dont store raw rows. Keep running totals per stop, hour and day-type (count, sum, max, number over 180 s)...thats about 86,000 rows, and the file stays the same size forever.
