@@ -1,0 +1,225 @@
+{
+  "metric": "scheduled stop-visits per 1,000 residents (weekday)",
+  "communes": [
+    {
+      "rank": 1,
+      "commune": "La-Chapelle-Saint-Aubin",
+      "population": 2319,
+      "n_stops": 53,
+      "stop_visits": 2343,
+      "visits_per_1000": 1010.3,
+      "top_stop_name": "\u00c9mile Delahaye",
+      "top_stop_share": 0.03,
+      "flag_concentrated": false
+    },
+    {
+      "rank": 2,
+      "commune": "Coulaines",
+      "population": 8226,
+      "n_stops": 105,
+      "stop_visits": 6267,
+      "visits_per_1000": 761.9,
+      "top_stop_name": "La Paix",
+      "top_stop_share": 0.02,
+      "flag_concentrated": false
+    },
+    {
+      "rank": 3,
+      "commune": "Rouillon",
+      "population": 2666,
+      "n_stops": 41,
+      "stop_visits": 1906,
+      "visits_per_1000": 714.9,
+      "top_stop_name": "St-Joseph",
+      "top_stop_share": 0.1,
+      "flag_concentrated": false
+    },
+    {
+      "rank": 4,
+      "commune": "Allonnes",
+      "population": 10846,
+      "n_stops": 69,
+      "stop_visits": 4017,
+      "visits_per_1000": 370.4,
+      "top_stop_name": "Lyc\u00e9e Andr\u00e9 Malraux",
+      "top_stop_share": 0.04,
+      "flag_concentrated": false
+    },
+    {
+      "rank": 5,
+      "commune": "Arnage",
+      "population": 5548,
+      "n_stops": 34,
+      "stop_visits": 1638,
+      "visits_per_1000": 295.2,
+      "top_stop_name": "Oasis-Centre des Expositions",
+      "top_stop_share": 0.12,
+      "flag_concentrated": false
+    },
+    {
+      "rank": 6,
+      "commune": "Yvre-l-Eveque",
+      "population": 4269,
+      "n_stops": 22,
+      "stop_visits": 750,
+      "visits_per_1000": 175.7,
+      "top_stop_name": "Avenue du Mans",
+      "top_stop_share": 0.07,
+      "flag_concentrated": false
+    },
+    {
+      "rank": 7,
+      "commune": "Saint-Saturnin",
+      "population": 2864,
+      "n_stops": 21,
+      "stop_visits": 490,
+      "visits_per_1000": 171.1,
+      "top_stop_name": "Cin\u00e9mas CGR",
+      "top_stop_share": 0.12,
+      "flag_concentrated": false
+    },
+    {
+      "rank": 8,
+      "commune": "La-Milesse",
+      "population": 2650,
+      "n_stops": 15,
+      "stop_visits": 425,
+      "visits_per_1000": 160.4,
+      "top_stop_name": "Four \u00e0 Chanvre",
+      "top_stop_share": 0.2,
+      "flag_concentrated": false
+    },
+    {
+      "rank": 9,
+      "commune": "Sarge-les-le-Mans",
+      "population": 3941,
+      "n_stops": 15,
+      "stop_visits": 630,
+      "visits_per_1000": 159.9,
+      "top_stop_name": "Bignon",
+      "top_stop_share": 0.07,
+      "flag_concentrated": false
+    },
+    {
+      "rank": 10,
+      "commune": "Le Mans",
+      "population": 148876,
+      "n_stops": 329,
+      "stop_visits": 22900,
+      "visits_per_1000": 153.8,
+      "top_stop_name": "Gares",
+      "top_stop_share": 0.01,
+      "flag_concentrated": false
+    },
+    {
+      "rank": 11,
+      "commune": "Ruaudin",
+      "population": 3542,
+      "n_stops": 22,
+      "stop_visits": 536,
+      "visits_per_1000": 151.3,
+      "top_stop_name": "Guetteloup",
+      "top_stop_share": 0.1,
+      "flag_concentrated": false
+    },
+    {
+      "rank": 12,
+      "commune": "Champagne",
+      "population": 3728,
+      "n_stops": 19,
+      "stop_visits": 425,
+      "visits_per_1000": 114.0,
+      "top_stop_name": "Auvours",
+      "top_stop_share": 0.06,
+      "flag_concentrated": false
+    },
+    {
+      "rank": 13,
+      "commune": "Mulsanne",
+      "population": 5352,
+      "n_stops": 18,
+      "stop_visits": 525,
+      "visits_per_1000": 98.1,
+      "top_stop_name": "Stade Mulsanne",
+      "top_stop_share": 0.08,
+      "flag_concentrated": false
+    },
+    {
+      "rank": 14,
+      "commune": "Aigne",
+      "population": 1724,
+      "n_stops": 6,
+      "stop_visits": 138,
+      "visits_per_1000": 80.0,
+      "top_stop_name": "Mairie Aign\u00e9",
+      "top_stop_share": 0.17,
+      "flag_concentrated": false
+    },
+    {
+      "rank": 15,
+      "commune": "Pruille-le-Chetif",
+      "population": 1357,
+      "n_stops": 8,
+      "stop_visits": 88,
+      "visits_per_1000": 64.8,
+      "top_stop_name": "Stade Asnill\u00e9",
+      "top_stop_share": 0.12,
+      "flag_concentrated": false
+    },
+    {
+      "rank": 16,
+      "commune": "Fay",
+      "population": 770,
+      "n_stops": 3,
+      "stop_visits": 44,
+      "visits_per_1000": 57.1,
+      "top_stop_name": "\u00c9glise Fay",
+      "top_stop_share": 0.5,
+      "flag_concentrated": true
+    },
+    {
+      "rank": 17,
+      "commune": "Trange",
+      "population": 1678,
+      "n_stops": 6,
+      "stop_visits": 87,
+      "visits_per_1000": 51.8,
+      "top_stop_name": "Maisons Rouges",
+      "top_stop_share": 0.17,
+      "flag_concentrated": false
+    },
+    {
+      "rank": 18,
+      "commune": "Chaufour-Notre-Dame",
+      "population": 1187,
+      "n_stops": 3,
+      "stop_visits": 58,
+      "visits_per_1000": 48.9,
+      "top_stop_name": "La Denisi\u00e8re",
+      "top_stop_share": 0.5,
+      "flag_concentrated": true
+    },
+    {
+      "rank": 19,
+      "commune": "Saint-Georges-du-Bois",
+      "population": 2308,
+      "n_stops": 7,
+      "stop_visits": 96,
+      "visits_per_1000": 41.6,
+      "top_stop_name": "Centre Commercial",
+      "top_stop_share": 0.25,
+      "flag_concentrated": false
+    },
+    {
+      "rank": 20,
+      "commune": "Fatines",
+      "population": 937,
+      "n_stops": 2,
+      "stop_visits": 38,
+      "visits_per_1000": 40.6,
+      "top_stop_name": "Place de l'\u00c9glise",
+      "top_stop_share": 0.66,
+      "flag_concentrated": true
+    }
+  ]
+}

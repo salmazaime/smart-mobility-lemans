@@ -1,0 +1,21 @@
+rank,commune,population,n_stops,stop_visits,visits_per_1000,top_stop_name,top_stop_share,flag_concentrated
+1,La-Chapelle-Saint-Aubin,2319,53,2343,1010.3,Émile Delahaye,0.03,False
+2,Coulaines,8226,105,6267,761.9,La Paix,0.02,False
+3,Rouillon,2666,41,1906,714.9,St-Joseph,0.1,False
+4,Allonnes,10846,69,4017,370.4,Lycée André Malraux,0.04,False
+5,Arnage,5548,34,1638,295.2,Oasis-Centre des Expositions,0.12,False
+6,Yvre-l-Eveque,4269,22,750,175.7,Avenue du Mans,0.07,False
+7,Saint-Saturnin,2864,21,490,171.1,Cinémas CGR,0.12,False
+8,La-Milesse,2650,15,425,160.4,Four à Chanvre,0.2,False
+9,Sarge-les-le-Mans,3941,15,630,159.9,Bignon,0.07,False
+10,Le Mans,148876,329,22900,153.8,Gares,0.01,False
+11,Ruaudin,3542,22,536,151.3,Guetteloup,0.1,False
+12,Champagne,3728,19,425,114.0,Auvours,0.06,False
+13,Mulsanne,5352,18,525,98.1,Stade Mulsanne,0.08,False
+14,Aigne,1724,6,138,80.0,Mairie Aigné,0.17,False
+15,Pruille-le-Chetif,1357,8,88,64.8,Stade Asnillé,0.12,False
+16,Fay,770,3,44,57.1,Église Fay,0.5,True
+17,Trange,1678,6,87,51.8,Maisons Rouges,0.17,False
+18,Chaufour-Notre-Dame,1187,3,58,48.9,La Denisière,0.5,True
+19,Saint-Georges-du-Bois,2308,7,96,41.6,Centre Commercial,0.25,False
+20,Fatines,937,2,38,40.6,Place de l'Église,0.66,True
